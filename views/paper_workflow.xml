@@ -1,0 +1,76 @@
+<openerp>
+    <data>
+        <record id="paper_submission_paper_workflow" model="workflow">
+            <field name="name">paper_submission.paper.workflow</field>
+            <field name="osv">paper_submission.paper</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="paper_draft">
+            <field name="name">Draft</field>
+            <field name="wkf_id" ref="paper_submission_paper_workflow"/>
+            <field name="flow_start" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_draft()</field>
+        </record>
+        <record model="workflow.activity" id="paper_submitted">
+            <field name="name">Submitted</field>
+            <field name="wkf_id" ref="paper_submission_paper_workflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_submit()</field>
+        </record>
+        <record model="workflow.activity" id="paper_in_review">
+            <field name="name">In Review</field>
+            <field name="wkf_id" ref="paper_submission_paper_workflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_in_review()</field>
+        </record>
+        <record model="workflow.activity" id="paper_reviewed">
+            <field name="name">Reviewed</field>
+            <field name="wkf_id" ref="paper_submission_paper_workflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_reviewed()</field>
+        </record>
+        <record model="workflow.activity" id="paper_accepted">
+            <field name="name">Accepted</field>
+            <field name="wkf_id" ref="paper_submission_paper_workflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_accepted()</field>
+        </record>
+
+
+        <record model="workflow.transition" id="paper_draft_to_submitted">
+            <field name="act_from" ref="paper_draft"/>
+            <field name="act_to" ref="paper_submitted"/>
+            <field name="signal">submitted</field>
+        </record>
+        <record model="workflow.transition" id="paper_submitted_to_draft">
+            <field name="act_from" ref="paper_submitted"/>
+            <field name="act_to" ref="paper_draft"/>
+            <field name="signal">draft</field>
+        </record>
+        <record model="workflow.transition" id="paper_in_review_to_draft">
+            <field name="act_from" ref="paper_in_review"/>
+            <field name="act_to" ref="paper_draft"/>
+            <field name="group_id" ref="paper_submission.paper_submission_group_coordinators"/>
+            <field name="signal">draft</field>
+        </record>
+        <record model="workflow.transition" id="paper_submitted_to_in_review">
+            <field name="act_from" ref="paper_submitted"/>
+            <field name="act_to" ref="paper_in_review"/>
+            <field name="signal">in_review</field>
+        </record>
+        <record model="workflow.transition" id="paper_in_review_to_reviewed">
+            <field name="act_from" ref="paper_in_review"/>
+            <field name="act_to" ref="paper_reviewed"/>
+            <field name="signal">reviewed</field>
+        </record>
+        <record model="workflow.transition" id="paper_reviewed_to_accepted">
+            <field name="act_from" ref="paper_reviewed"/>
+            <field name="act_to" ref="paper_accepted"/>
+            <field name="group_id" ref="paper_submission.paper_submission_group_coordinators"/>
+            <field name="signal">accepted</field>
+        </record>
+
+    </data>
+</openerp>

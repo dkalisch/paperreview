@@ -1,0 +1,29 @@
+<openerp>
+    <data>
+        <record model="ir.module.category" id="paper_submission_group_category">
+            <field name="name">Paper Submission</field>
+            <field name="description">Paper Submission Description</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="paper_submission_group_authors" model="res.groups">
+            <field name="name">Authors</field>
+            <field name="category_id" ref="paper_submission_group_category"/>
+        </record>
+
+        <record id="paper_submission_group_track_chairs" model="res.groups">
+            <field name="name">Track Chairs</field>
+            <field name="category_id" ref="paper_submission_group_category"/>
+        </record>
+
+        <record id="paper_submission_group_conference_chairs" model="res.groups">
+            <field name="name">Conference Chairs</field>
+            <field name="category_id" ref="paper_submission_group_category"/>
+        </record>
+
+        <record id="paper_submission_group_coordinators" model="res.groups">
+            <field name="name">Coordinators</field>
+            <field name="category_id" ref="paper_submission_group_category"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,135 @@
+<openerp>
+    <data>
+        <!-- Review detail form view -->
+        <record id="paper_submission_review_form" model="ir.ui.view">
+            <field name="name">Review Detail View</field>
+            <field name="model">paper_submission.review</field>
+            <field name="arch" type="xml">
+                <form string="Review">
+                    <header>
+                        <button name="draft" type="workflow"
+                                string="Reset to draft"
+                                states="submitted,done"/>
+                        <button name="submitted" type="workflow"
+                                string="Submit" states="draft"
+                                class="oe_highlight"/>
+                        <button name="finished" type="workflow"
+                                string="Finish" states="submitted"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="title" readonly="True"/>
+                            </h1>
+                        </div>
+                        <field name="paper_id" readonly="True"></field>
+                        <group col="2">
+                            <group colspan="1">
+                                <field name="create_date" readonly="True"/>
+                            </group>
+                            <group colspan="1">
+                                <field name="reviewer_id"
+                                       groups="paper_submission.paper_submission_group_track_chairs"></field>
+                            </group>
+                        </group>
+                        <h3>Grading</h3>
+                        <span>Please enter a value between 0 and 5 for every category</span>
+                        <group col="2">
+                            <group colspan="1">
+                                <field name="interest"/>
+                                <field name="contribution"/>
+                                <field name="theory"/>
+                                <field name="presentation"/>
+                                <field name="references"/>
+                            </group>
+                            <group colspan="1">
+                                <field name="originality"/>
+                                <field name="relevance"/>
+                                <field name="methodology"/>
+                                <field name="validity"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="avg_grade"></field>
+                        </group>
+                        <group>
+                            <field name="comment"/>
+                            <field name="full_review"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--<record id="paper_submission_review_assign_form" model="ir.ui.view">
+            <field name="name">Review Assign View</field>
+            <field name="model">paper_submission.review</field>
+            <field name="arch" type="xml">
+                <form string="Review">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="title" readonly="True"/></h1>
+                        </div>
+                            <field name="paper_id" readonly="True"></field>
+                        <group col="2">
+                            <group colspan="1">
+                                <field name="create_date" readonly="True"/>
+                            </group>
+                            <group colspan="1">
+                                <field name="reviewer_id" groups="paper_submission.paper_submission_group_coordinators"></field>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>-->
+
+        <!-- Received Reviews tree view for Authors - Called from Menu -->
+        <record id="paper_submission_review_tree_author" model="ir.ui.view">
+            <field name="name">Review View</field>
+            <field name="model">paper_submission.review</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="paper_id"/>
+                    <field name="avg_grade"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Assigned Reviews tree view for Reviewers - Called from Menu -->
+        <record id="paper_submission_review_tree_reviewer" model="ir.ui.view">
+            <field name="name">Review View</field>
+            <field name="model">paper_submission.review</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="paper_id"/>
+                    <field name="minitrack_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Partner Paper Extension -->
+        <record id="paper_submission.track_paper_view" model="ir.ui.view">
+            <field name="name">Track Paper View</field>
+            <field name="model">event.track</field>
+            <field name="inherit_id" ref="website_event_track.view_event_track_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <notebook>
+                        <page string="Papers">
+                            <field name="paper_ids">
+                                <tree>
+                                    <field name="title"/>
+                                    <field name="review_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

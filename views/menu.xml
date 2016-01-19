@@ -1,0 +1,83 @@
+<openerp>
+    <data>
+        <!-- menu actions -->
+        <!--<act_window id="action_paper_submission_papers" name="Submissions" res_model="paper_submission.paper" domain="[('submitter_id', '=', uid)]"/>-->
+        <record id="action_paper_submission_papers" model="ir.actions.act_window">
+            <field name="name">Submissions</field>
+            <field name="res_model">paper_submission.paper</field>
+            <!--<field name="domain">['|',('submitter_id', '=', uid),('uid', 'in', 'author_ids')]</field>-->
+            <field name="domain">[('submitter_id', '=', uid)]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="paper_submission.paper_submission_paper_tree_author"/>
+            <field name="context">{'default_submitter_id': uid}</field>
+        </record>
+
+        <record id="action_paper_submission_received_reviews" model="ir.actions.act_window">
+            <field name="name">Recieved Reviews</field>
+            <field name="res_model">paper_submission.review</field>
+            <field name="domain">[('paper_id.submitter_id', '=', uid)]</field>
+            <field name="mode">tree,form</field>
+            <field name="view_id" ref="paper_submission.paper_submission_review_tree_author"/>
+        </record>
+
+        <record id="action_paper_submission_reviews" model="ir.actions.act_window">
+            <field name="name">Assigned Reviews</field>
+            <field name="res_model">paper_submission.review</field>
+            <field name="domain">[('reviewer_id', '=', uid)]</field>
+            <field name="mode">tree,form</field>
+            <field name="view_id" ref="paper_submission.paper_submission_review_tree_reviewer"/>
+        </record>
+
+        <record id="action_paper_submission_minitrack_submissions" model="ir.actions.act_window">
+            <field name="name">Mini Track Submissions</field>
+            <field name="res_model">paper_submission.paper</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="paper_submission.paper_submission_paper_tree"/>
+        </record>
+
+        <record id="action_paper_submission_track_submissions" model="ir.actions.act_window">
+            <field name="name">Track Submissions</field>
+            <field name="res_model">paper_submission.paper</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="paper_submission.paper_submission_paper_tree"/>
+        </record>
+
+        <!-- Category -->
+        <menuitem sequence="2" id="menu_paper_submission" name="Paper Submission"/>
+
+        <!-- Menu Items -->
+        <menuitem id="menu_paper_submission_author" parent="menu_paper_submission"
+                  name="Author"/>
+        <menuitem id="menu_paper_submission_author_papers"
+                  parent="menu_paper_submission_author"
+                  action="action_paper_submission_papers"/>
+        <menuitem id="menu_paper_submission_author_reviews"
+                  parent="menu_paper_submission_author"
+                  action="action_paper_submission_received_reviews"/>
+
+        <menuitem id="menu_paper_submission_review" parent="menu_paper_submission"
+                  name="Reviewer"/>
+        <menuitem id="menu_paper_submission_review_reviews"
+                  parent="menu_paper_submission_review"
+                  action="action_paper_submission_reviews"/>
+
+        <menuitem id="menu_paper_submission_minitrack" parent="menu_paper_submission"
+                  name="Minitrack Chair" groups="paper_submission_group_track_chairs"/>
+        <menuitem id="menu_paper_submission_minitrack_submissions"
+                  parent="menu_paper_submission_minitrack"
+                  action="action_paper_submission_minitrack_submissions"/>
+
+        <menuitem id="menu_paper_submission_track" parent="menu_paper_submission"
+                  name="Track Chair" groups="paper_submission_group_track_chairs"/>
+        <menuitem id="menu_paper_submission_track_submissions"
+                  parent="menu_paper_submission_track"
+                  action="action_paper_submission_track_submissions"/>
+
+        <menuitem id="menu_paper_submission_coordinator" parent="menu_paper_submission"
+                  name="Coordinator" groups="paper_submission_group_coordinators"/>
+        <menuitem id="menu_paper_submission_coordinator_calls"
+                  parent="menu_paper_submission_coordinator"
+                  action="action_paper_submission_track_submissions"/>
+    </data>
+</openerp>
+

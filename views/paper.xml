@@ -1,0 +1,149 @@
+<openerp>
+    <data>
+        <!-- Paper detail form view -->
+        <record id="paper_submission_paper_form" model="ir.ui.view">
+            <field name="name">Paper Detail View</field>
+            <field name="model">paper_submission.paper</field>
+            <field name="arch" type="xml">
+                <form string="Papers">
+                    <header>
+                        <button name="draft" type="workflow"
+                                string="Reset to draft"
+                                states="submitted,done"/>
+                        <button name="submitted" type="workflow"
+                                string="Submit" states="draft"
+                                class="oe_highlight"/>
+                        <button name="in_review" type="workflow"
+                                string="Set to In Review" states="submitted"
+                                class="oe_highlight"
+                                groups="paper_submission.paper_submission_group_coordinators"/>
+                        <button name="reviewed" type="workflow"
+                                string="Finish Reviewing" states="in_review"
+                                class="oe_highlight"/>
+                        <button name="accepted" type="workflow"
+                                string="Accept" states="reviewed"
+                                class="oe_highlight" groups="paper_submission.paper_submission_group_coordinators"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="title" class="oe_edit_only"/>
+                            <h1>
+                                <field name="title"/>
+                            </h1>
+                        </div>
+                        <group col="2">
+                            <group colspan="1">
+                                <field name="submitter_id" readonly="True"/>
+                                <field name="minitrack_id" domain="[('is_main_track', '=', False)]"
+                                       options="{'no_create_edit':'1'}"/>
+                                <field name="tag_ids" widget="many2many_tags"/>
+                            </group>
+                            <group colspan="1">
+                                <field name="create_date" readonly="True"/>
+                                <field name="accepted" attrs="{'invisible': [('state','!=','accepted')]}"/>
+                                <field name="best_paper" attrs="{'invisible': [('state','!=','accepted')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="abstract"/>
+                            <field name="document" filename="document_filename"/>
+                        </group>
+                        <notebook string="">
+                            <page string="Authors">
+                                <field name="author_ids" context="{'default_paper_id': active_id}">
+                                    <tree>
+                                        <field name="email"/>
+                                        <field name="affiliation"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Reviews">
+                                <field name="review_ids" context="{'default_paper_id': active_id}">
+                                    <tree>
+                                        <field name="id"/>
+                                        <!--<field name="reviewer_id"
+                                               groups="paper_submission.paper_submission_group_track_chairs"/>-->
+                                        <field name="avg_grade"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Additional Documents">
+                                <field name="file_ids" context="{'default_paper_id': active_id}">
+                                    <tree>
+                                        <field name="description"/>
+                                        <!--<field name="category"/>-->
+                                        <field name="binary"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Popup Review tree view for a paper - Called by "Assign Review" button -->
+        <record id="paper_submission_assigned_review_tree" model="ir.ui.view">
+            <field name="name">Assigned Review Tree</field>
+            <field name="model">paper_submission.review</field>
+            <field name="arch" type="xml">
+                <tree create="true">
+                    <field name="reviewer_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action for opening popup with reviews for paper -->
+        <record id="action_paper_assign_review" model="ir.actions.act_window">
+            <field name="name">Assigned Reviews</field>
+            <field name="res_model">paper_submission.review</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="paper_submission.paper_submission_assigned_review_tree"/>
+            <field name="target">new</field>
+            <field name="create">true</field>
+        </record>
+
+        <!-- Paper tree view -->
+        <record id="paper_submission_paper_tree" model="ir.ui.view">
+            <field name="name">Paper List View</field>
+            <field name="model">paper_submission.paper</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="title"/>
+                    <field name="minitrack_id"/>
+                    <field name="submitter_id"/>
+                    <field name="state" invisible="1"/>
+                    <!--<button name="%(action_paper_assign_review)d" string="Assign Reviews" type="action"
+                            groups="paper_submission.paper_submission_group_track_chairs"
+                            attrs="{'invisible': [('state','!=','submitted')]}"/>-->
+                    <button name="open_review_popup" string="Assign Reviews" type="object"
+                            groups="paper_submission.paper_submission_group_track_chairs"
+                            attrs="{'invisible': [('state','!=','submitted')]}"/>
+                    <button name="reject_paper" string="Reject" type="object"
+                            groups="paper_submission.paper_submission_group_track_chairs"
+                            attrs="{'invisible': [('state','!=','reviewed')]}"/>
+                    <button name="accept_paper" string="Accept" type="object"
+                            groups="paper_submission.paper_submission_group_track_chairs"
+                            attrs="{'invisible': [('state','!=','reviewed')]}"/>
+                    <button class="btn_green" name="accept_paper_and_nominate" string="Best Paper" type="object"
+                            groups="paper_submission.paper_submission_group_track_chairs"
+                            attrs="{'invisible': [('state','!=','reviewed')]}"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Paper tree view for authors - Called from menu -->
+        <record id="paper_submission_paper_tree_author" model="ir.ui.view">
+            <field name="name">Paper List View</field>
+            <field name="model">paper_submission.paper</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="title"/>
+                    <field name="minitrack_id"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>

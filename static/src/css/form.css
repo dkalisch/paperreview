@@ -1,0 +1,57 @@
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.button-help{
+    margin-top: 27px;
+    color: #777;
+}
+
+.button-help:hover{
+    color: #000000;
+    cursor: pointer;
+}
+
+.button-plus{
+    color: #777;
+    margin-top: 27px;
+}
+
+.button-plus:hover{
+    color: #000000;
+    cursor: pointer;
+}
+
+.author-input{
+    /* width: 18%;
+    white-space: nowrap;*/
+}
+
+#author-modal-trigger{
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.bootstrap-tagsinput{
+    width: 100%;
+}
+
+.label-info{
+    background-color: #428bca;
+}

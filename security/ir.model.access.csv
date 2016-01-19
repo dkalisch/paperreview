@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_paper_submission_paper,paper_submission.paper,model_paper_submission_paper,,1,1,1,1
+
+access_review_author,Access Review Author,model_paper_submission_review,paper_submission.paper_submission_group_authors,1,1,0,0
+access_review_track_chair,Access Review Track Chair,model_paper_submission_review,paper_submission.paper_submission_group_track_chairs,1,1,1,1
+
+
+access_paper_submission_file,paper_submission.file,model_paper_submission_file,,1,1,1,1
+access_paper_submission_document,access_paper_submission_document,model_paper_submission_document,,1,1,1,1

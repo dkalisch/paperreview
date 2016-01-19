@@ -1,0 +1,103 @@
+/* SUBMISSION */
+.big500{
+    font-size:500%;
+}
+
+#paper-submit{
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    border: 1px solid #ffffff;
+    text-align: center;
+    font-size:250%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #ffffff;
+}
+
+#paper-submit:hover{
+    cursor: pointer;
+    color: #2a6496;
+}
+
+.float-right{
+    float: right;
+}
+
+/* TIMELINE */
+#timeline{
+    list-style-type: none;
+    margin-top: 4%;
+}
+
+#timeline:after{
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 90px;
+    bottom: 20px;
+    left: 61px;
+    border-left: 2px solid #428bca; /*change these values to suit your liking*/
+}
+
+.timeline-event{
+    margin-bottom: 3%;
+}
+
+.timeline-event input[type="radio"]{
+    cursor: pointer;
+    position: absolute;
+    margin-top: 9px;
+}
+
+.timeline-content {
+    position: relative;
+    margin-left: 3%;
+}
+
+.timeline-event input[type="radio"]:checked ~ .timeline-content p {
+    color: rgba(0, 0, 0, 0.6);
+    height: 70px;
+}
+
+h3{
+    font-size: 120%;
+}
+
+.timeline-content p{
+    height: 0;
+    width: 80%;
+    overflow: hidden;
+    -webkit-transition: height 1s ease;
+    -moz-transition: height 1s ease;
+    -o-transition: height 1s ease;
+    -ms-transition: height 1s ease;
+    transition: height 1s ease;
+}
+
+/* ROADMAP */
+#section-roadmap{
+    /* background: #34495e url("../img/road.svg") no-repeat; */
+}
+
+.roadmap-arrow{
+    margin-top: 30px;
+    visibility: hidden;
+}
+
+.roadmap-arrow.elem-active{
+    visibility: visible;
+}
+
+/* MISC */
+.come-in {
+  transform: translateX(500px);
+  animation: come-in 0.8s ease forwards;
+}
+.come-in:nth-child(odd) {
+  animation-duration: 0.6s; /* So they look staggered */
+}
+
+@keyframes come-in {
+  to { transform: translateY(0); }
+}

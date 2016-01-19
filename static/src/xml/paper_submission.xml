@@ -1,0 +1,528 @@
+<openerp>
+    <data>
+        <template id="header" inherit_id="website.layout" name="Header Papers Link">
+            <!-- Add paper submission to header menu -->
+            <xpath expr="//header//ul[@id='top_menu']/li" position="before">
+                <li>
+                    <a href="/paper_submission/">Paper Submission</a>
+                </li>
+            </xpath>
+        </template>
+
+        <template id="paper_submission.main" name="HICSS - Paper Submission">
+            <!-- Paper Submission Website -->
+            <t t-call="website.layout">
+                <script type="text/javascript" src="/paper_submission/static/src/js/jquery-1.11.3.min.js"/>
+                <!--<script type="text/javascript" src="/paper_submission/static/src/js/jquery-migrate-1.2.1.min.js"/>-->
+                <script type="text/javascript" src="/paper_submission/static/src/js/jquery-ui.js"/>
+                <script type="text/javascript" src="/paper_submission/static/src/js/bootstrap-tagsinput.js"/>
+                <script type="text/javascript" src="/paper_submission/static/src/js/typeahead.bundle.js"/>
+                <!--<script type="text/javascript" src="/paper_submission/static/src/js/jquery.visible.js"/>-->
+                <script type="text/javascript" src="/paper_submission/static/src/js/tag-it.min.js"/>
+                <script type="text/javascript" src="/paper_submission/static/src/js/main.js"/>
+                <link rel="stylesheet" href="/paper_submission/static/src/css/bootstrap-tagsinput.css"/>
+                <link rel='stylesheet' href='/paper_submission/static/src/css/form.css'/>
+                <link rel='stylesheet' href='/paper_submission/static/src/css/base.css'/>
+                <link href="/paper_submission/static/src/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+                <link href="/paper_submission/static/src/css/jquery.tagit.css" rel="stylesheet" type="text/css"/>
+                <div id="wrap" class="oe_structure oe_empty">
+                    <section id="section-header" class="mt0 oe_blue" style="">
+                        <!-- HEADER -->
+                        <div class="container">
+                            <div class="row">
+                                <div class="mb0 col-md-offset-3 col-md-6 mt16">
+                                    <h1 class="text-center big500">Call For Papers</h1>
+                                    <h3 class="text-muted text-center">now open</h3>
+                                    <p/>
+                                    <div class="row col-md-offset-2 col-md-8">
+                                        <table class="table table-bordered table-responsive">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align: center;">
+                                                        <h3>​50</h3>
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <h3>20</h3>
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <h3>37</h3>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center;">days</td>
+                                                    <td style="text-align: center;">hours</td>
+                                                    <td style="text-align: center;">mins</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4 style="text-align: center;">
+                                            <b>June 15th 2015</b>
+                                        </h4>
+                                        <p/>
+                                        <p/>
+                                        <a href="#submission-form">
+                                            <div id="paper-submit">SUBMIT</div>
+                                        </a>
+                                        <p/>
+                                        <p/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mb32 mt32" style="">
+                        <!-- INFORMATION SECTION -->
+                        <div class="container">
+                            <div class="row mt16 mb16">
+                                <div class="col-md-4 text-center">
+                                    <span class="fa fa-th fa-5x"
+                                          style="animation-play-state: paused; transition: none 0s ease 0s"/>
+                                    <h3 class="mt8 mb0">Topics</h3>
+                                    <div class="text-muted">Every paper must be sumitted to a minitrack. Each minitrack
+                                        is part
+                                        of a larger track which is dedicated to a specific topic. A paper should only be
+                                        submitted to a minitrack if it fits the minitracks topic.
+                                        <br/>
+                                        <a class="btn btn-primary btn-lg mt8"
+                                           href="/event/test-event-2015-08-24-2015-08-29-1/track">Check out
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <span class="fa fa-check-square-o fa-5x"
+                                          style="animation-play-state: paused; transition: none 0s ease 0s"/>
+                                    <h3 class="mt8 mb0">Rules</h3>
+                                    <div class="text-muted">After a paper has been submitted it gets reviewed by experts
+                                        of the
+                                        respective field. Afterards the paper gets accepted or rejected by the minitrack
+                                        chair.
+                                        BUT only papers that follow certain rules can get accpeted.
+                                        <br/>
+                                        <a class="btn btn-primary btn-lg mt8" href="#section-rules">Learn more</a>
+                                    </div>
+                                </div>
+                                <div class="text-center col-md-4 mt0">
+                                    <span class="fa fa-calendar fa-5x"
+                                          style="animation-play-state: paused; transition: none 0s ease 0s"/>
+                                    <h3 class="mt8 mb0">Timeline</h3>
+                                    <p>
+                                        <span style="color:#808080;">The submission process follows a specific timeline
+                                            that
+                                            consists of important dates and deadlines. To be able to submit successfully
+                                            please make
+                                            sure to be aware of all the dates and most important to not miss any
+                                            deadlines.
+                                        </span>
+                                        <br/>
+                                        <a class="btn btn-primary btn-lg mt8" href="#section-timeline">View</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row mt16 mb16">
+                                <div class="text-center col-md-4 mt0">
+                                    <span class="fa fa-flag-checkered fa-5x"
+                                          style="animation-play-state: paused; transition: none 0s ease 0s"/>
+                                    <h3 class="mt8 mb0">Roadmap</h3>
+                                    <p>
+                                        <span style="color:#808080;">The paper submission process follows a specific
+                                            flow.
+
+                                        </span>
+                                        <br/>
+                                        <a class="btn btn-primary btn-lg mt8" href="/page/website.contactus">View</a>
+                                    </p>
+                                </div>
+                                <div class="text-center col-md-4 mt0">
+                                    <span class="fa fa-question fa-5x"
+                                          style="animation-play-state: paused; transition: none 0s ease 0s"/>
+                                    <h3 class="mt8 mb0">Help</h3>
+                                    <p>
+                                        <span style="color:#808080;">Submitting a paper can be confusing but luckily
+                                            there is a
+                                            competent team of enthusiastic specialists that will provide help and guide
+                                            everyone
+                                            through the submission process.
+                                        </span>
+                                        <br/>
+                                        <a class="btn btn-primary btn-lg mt8" href="/page/website.contactus">Contact</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="section-rules" class="para_large oe_blue">
+                        <!-- RULES SECTION -->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 mt48 mb32">
+                                    <div class="o_image_floating o_margin_l pull-right o_hide_link">
+                                        <div class="o_container">
+                                            <img alt="Odoo Members" class="img img-rounded img-responsive"
+                                                 src="/website/image/ir.attachment/58_7a05a6d/datas"
+                                                 style="animation-play-state: paused; transition: none 0s ease 0s"/>
+                                            <mark class="text-center">
+                                                <a href="#">
+                                                    <strong>Click Here</strong>
+                                                </a>
+                                            </mark>
+                                        </div>
+                                    </div>
+                                    <h2>Please consider the following rules</h2>
+                                    <p/>
+                                    <p style="text-align: justify;">The paper must not exceed
+                                        <strong>10 pages.</strong>
+                                    </p>
+                                    <p style="text-align: justify;">Papers are due to
+                                        <strong>June, 15th.</strong>
+                                    </p>
+                                    <p style="text-align: justify;">A HICCS paper must contain
+                                        <strong>original material</strong>
+                                        . They may not be previously published nor currently submitted elswhere.
+                                    </p>
+                                    <p style="text-align: justify;">It must follow the
+                                        <a href="http://www.hicss.org/#!author-instructions/c1dsb" target="_blank">
+                                            <strong>Initial Format Specifications</strong>
+                                        </a>
+                                        .
+                                    </p>
+                                    <p style="text-align: justify;">A author can not author or co-author
+                                        <strong>more than 5</strong>
+                                        papers.
+                                    </p>
+                                    <p style="text-align: justify;">
+                                        <a href="http://www.hicss.org/#!author-instructions/c1dsb">Sample paper and
+                                            LaTeX
+                                            template.
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="section-timeline" class="para_large">
+                        <!-- TIMELINE SECTION -->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 mt48 mb32">
+                                    <h2>Timeline</h2>
+                                    <ul id="timeline">
+                                        <li class="timeline-event">
+                                            <input type="radio" name="timeline-radio"/>
+                                            <div class="timeline-content">
+                                                <h3>March 19 - The call for papers starts.</h3>
+                                                <p>On this day the call for papers starts and everybody can begin to
+                                                    submit papers.
+                                                    Before submitting please consider the rules.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-event">
+                                            <input type="radio" name="timeline-radio"/>
+                                            <div class="timeline-content">
+                                                <h3>June 15 - Deadline to submit full manuscripts for review.</h3>
+                                                <p>Up until this point submissions can be made. Afterwards they enter
+                                                    the review process.
+                                                    Therefore the track chair assigns reviewers with expertise from the
+                                                    specific topic to the paper for a blind review.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-event">
+                                            <input type="radio" name="timeline-radio"/>
+                                            <div class="timeline-content">
+                                                <h3>August 16 - Submissions are accepted or rejected.</h3>
+                                                <p>After the paper has been reviewed by the reviewer it gets reviewed by
+                                                    the (mini-)track chair.
+                                                    He then makes a design whether the paper is accepted, rejected or
+                                                    accepted with mandatory changes.
+                                                    For the last case the paper has to be improved and resubmitted.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-event">
+                                            <input type="radio" name="timeline-radio"/>
+                                            <div class="timeline-content">
+                                                <h3>September 4 - Deadline for re-submission of papers.</h3>
+                                                <p>The improvements to papers that have been accepted with mandatory
+                                                    changes have to be done and
+                                                    the paper has to be resubmitted by now.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-event">
+                                            <input type="radio" name="timeline-radio"/>
+                                            <div class="timeline-content">
+                                                <h3>September 15 - Deadline for the final submission.</h3>
+                                                <p>Authors are able to make minor changes to their papers, e.g. fix
+                                                    spelling errors or rephrase headlines.
+                                                    But up to the given date the final version has to be submitted. It
+                                                    can not be changed afterwards.
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-event">
+                                            <input type="radio" name="timeline-radio"/>
+                                            <div class="timeline-content">
+                                                <h3>October 1 - Papers with no registered authors are removed.</h3>
+                                                <p>Naturally one author from every paper has to be registered to the
+                                                    conference so the paper can be presented.
+                                                    If this is not the case until the given deadline these papers will
+                                                    be removed.
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="section-roadmap" class="para_large oe_blue">
+                        <!-- ROADMAP SECTION -->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 mt48 mb32">
+                                    <h2>Roadmap</h2>
+                                    <p/>
+                                    <div style="padding-left: 0%">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <span class="fa fa-play fa-2x roadmap-arrow elem-active"
+                                                      style=""></span>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <h3>1. Submit Initial Manuscript</h3>
+                                                <p style="text-align: justify;">Deadline to submit full manuscripts for
+                                                    review.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-left: 10%">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <span class="fa fa-play fa-2x roadmap-arrow" style=""></span>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <h3>2. Receive Decision</h3>
+                                                <p style="text-align: justify;">Submissions are accepted or rejected.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-left: 20%">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <span class="fa fa-play fa-2x roadmap-arrow" style=""></span>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <h3>3. Revise Paper Accepted With Modification Required (A-M) And
+                                                    Resubmit
+                                                </h3>
+                                                <p style="text-align: justify;">Deadline for re-submission of papers
+                                                    that got accepted with mandatory changes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-left: 30%">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <span class="fa fa-play fa-2x roadmap-arrow" style=""></span>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <h3>4. Secure Funding and Make Visa/Travel/Hotel Arrangement</h3>
+                                                <p style="text-align: justify;">Book your trip and apply for Visa.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-left: 40%">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <span class="fa fa-play fa-2x roadmap-arrow" style=""></span>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <h3>5. Submit Final Paper</h3>
+                                                <p style="text-align: justify;">Deadline for the final submission.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-left: 50%">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <span class="fa fa-play fa-2x roadmap-arrow" style=""></span>
+                                            </div>
+                                            <div class="col-md-11">
+                                                <h3>6. Register for the Conference</h3>
+                                                <p style="text-align: justify;">Papers with no registered authors are
+                                                    removed.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mt16 mb16" style="">
+                        <!-- PAPER SUBMISSION FORM -->
+                        <form method="post" action="/paper_submission/submit" enctype="multipart/form-data" id="form">
+                            <div class="container" id="submission-form">
+                                <div class="row">
+                                    <div class="col-md-12 text-center mt16 mb0">
+                                        <h2>The Submission</h2>
+                                    </div>
+                                    <div class="col-md-12 mb16 mt16">
+                                        <div t-attf-class="form-group col-lg-10">
+                                            <label class="control-label" for="tracks">Tracks</label>
+                                            <select name="main_track" class="form-control"
+                                                    t-attf-onchange="trackChange({{ tracks }}, this.value)"
+                                                    required="required">
+                                                <option disabled="disabled" selected="true" value="">- - Select a Track
+                                                    - -
+                                                </option>
+                                                <t t-foreach="main_tracks" t-as="main_track">
+                                                    <option t-attf-value="{{ main_track }}">
+                                                        <t t-esc="main_track"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <a href="/event/test-event-2015-08-24-2015-08-29-1/track">
+                                                <span class="fa fa-question button-help fa-2x"
+                                                      style="animation-play-state: paused; transition: none 0s ease 0s"></span>
+                                            </a>
+                                        </div>
+                                        <div t-attf-class="form-group col-lg-10">
+                                            <label class="control-label" for="minitracks">Minitracks</label>
+                                            <select class="form-control" name="minitrack" onchange=""
+                                                    id="select-minitrack" required="required">
+                                                <option disabled="disabled" selected="true" value="">- - Select a Main
+                                                    Track first! - -
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <a href="/event/test-event-2015-08-24-2015-08-29-1/track">
+                                                <span class="fa fa-question button-help fa-2x"
+                                                      style="animation-play-state: paused; transition: none 0s ease 0s"></span>
+                                            </a>
+                                        </div>
+                                        <div t-attf-class="form-group col-lg-10">
+                                            <label class="control-label" for="title">Title</label>
+                                            <input type="text" name="title" class="form-control" data-toggle="tooltip"
+                                                   data-placement="top" title="Title of the paper" required="required"/>
+                                        </div>
+                                        <div t-attf-class="form-group col-lg-10" id="authors">
+                                            <label class="control-label" for="Authors">Authors</label>
+                                            <input type="text" class="form-control author-input col-md-10"
+                                                   data-toggle="modal"
+                                                   data-target="#authorModal" id="author-modal-trigger"
+                                                   required="required"/>
+                                            <input type="hidden" name="author_count" id="author_count" value=""/>
+                                        </div>
+                                        <div t-attf-class="form-group col-lg-10">
+                                            <label class="control-label" for="tags">Tags</label>
+                                            <input type="text" name="tag_ids" id="tags-selector"
+                                                   class="form-control typeahead" required="required"
+                                                   data-role="tagsinput"/>
+                                            <input type="hidden" id="tag-data" name="tag_data"
+                                                   t-attf-value="{{ tags }}"/>
+                                        </div>
+                                        <div t-attf-class="form-group col-lg-10">
+                                            <label class="control-label" for="abstract">Abstract</label>
+                                            <textarea style="resize:none" class="form-control" rows="3"
+                                                      name="abstract" required="required"/>
+                                        </div>
+                                        <div t-attf-class="form-group col-lg-10">
+                                            <label class="control-label" for="document">Document</label>
+                                            <input type="file" name="document" class="form-control" required="required"
+                                                   accept="application/pdf"/>
+                                        </div>
+                                        <div t-attf-class="form-group col-lg-10">
+                                            <label class="control-label" for="add_files">Additional Files</label>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="add_files_desc" class="form-control"
+                                                           placeholder="Description"/>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="file" class="form-control" name="add_files_file"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group col-lg-12">
+                                            <button type="submit" class="btn btn-default">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <!-- MODAL -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">x</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Review</h4>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">x</span>
+                                </button>
+                                <h4 class="modal-title" id="authorModalLabel">Add Author</h4>
+                            </div>
+                            <div style="padding: 0" class="modal-body">
+                                <div t-attf-class="form-group col-lg-12" id="author-input-group">
+                                    <input type="hidden" value="" id="author_id"/>
+                                    <label class="control-label" for="author_firstname">First Name</label>
+                                    <input type="text" class="form-control" name="author_firstname"
+                                           id="author-firstname"/>
+                                    <label class="control-label" for="author_lastname">Last Name</label>
+                                    <input type="text" class="form-control" name="author_lastname"
+                                           id="author-lastname"/>
+                                    <label class="control-label" for="author_email">Email</label>
+                                    <input type="text" class="form-control" name="author_email" id="author-email"/>
+                                    <label class="control-label" for="author_affiliation">Affiliation</label>
+                                    <input type="text" class="form-control" name="author_affiliation"
+                                           id="author-affiliation"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                        onclick="saveAuthor()">Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </t>
+        </template>
+    </data>
+</openerp>

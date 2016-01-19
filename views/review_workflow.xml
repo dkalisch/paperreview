@@ -1,0 +1,46 @@
+<openerp>
+    <data>
+        <record id="paper_submission_review_workflow" model="workflow">
+            <field name="name">paper_submission.review.workflow</field>
+            <field name="osv">paper_submission.review</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="review_draft">
+            <field name="name">Draft</field>
+            <field name="wkf_id" ref="paper_submission_review_workflow"/>
+            <field name="flow_start" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_draft()</field>
+        </record>
+        <record model="workflow.activity" id="review_submitted">
+            <field name="name">Submitted</field>
+            <field name="wkf_id" ref="paper_submission_review_workflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_submit()</field>
+        </record>
+        <record model="workflow.activity" id="review_finished">
+            <field name="name">Finished</field>
+            <field name="wkf_id" ref="paper_submission_review_workflow"/>
+            <field name="kind">function</field>
+            <field name="action">action_finish()</field>
+        </record>
+
+
+        <record model="workflow.transition" id="review_draft_to_submitted">
+            <field name="act_from" ref="review_draft"/>
+            <field name="act_to" ref="review_submitted"/>
+            <field name="signal">submitted</field>
+        </record>
+        <record model="workflow.transition" id="review_submitted_to_draft">
+            <field name="act_from" ref="review_submitted"/>
+            <field name="act_to" ref="review_draft"/>
+            <field name="signal">draft</field>
+        </record>
+        <record model="workflow.transition" id="review_submitted_to_finished">
+            <field name="act_from" ref="review_submitted"/>
+            <field name="act_to" ref="review_finished"/>
+            <field name="signal">finished</field>
+        </record>
+    </data>
+</openerp>

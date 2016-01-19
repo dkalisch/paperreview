@@ -1,0 +1,20 @@
+<openerp>
+    <data>
+        <record id="view_partner_show_papers" model="ir.ui.view">
+            <field name="name">paper_submission.partner_show_papers</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Papers">
+                        <field name="paper_ids" context="{'author_id': active_id}">
+                            <tree string="Papers">
+                                <field name="title"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
